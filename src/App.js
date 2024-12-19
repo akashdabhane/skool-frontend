@@ -1,0 +1,28 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Joinedclassrooms from "./pages/JoinedClassrooms";
+import Classroom from "./pages/Classroom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import Lecture from "./pages/Lecture";
+
+function App() {
+  return (
+    <div className="App ">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/c/" element={<Joinedclassrooms />} />
+          <Route path="/c/:classid" element={<Classroom />} />
+
+          {/* lecture */}
+          <Route path="/lec/:lectureid" element={<Lecture />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
