@@ -1,9 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Google from "../images/google.png";
 import Facebook from "../images/facebook.png";
 import Twitter from "../images/twitter.png";
 import Logo from "../images/logo.png";
+import { useFormik } from "formik";
+import { loginSchema } from "../validationSchema/loginSchema";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { baseUrl } from "../utils/helper";
 
 // Social media icons and labels
 const socialLogins = [
@@ -36,6 +41,51 @@ const formFields = [
 ];
 
 function Login() {
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+
+  // using formik for handling input fields
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  // values, handleBlur, handleChange, handleSubmit, errors, touched
+  // By disabling validation onChange and onBlur formik will validate on submit.
+  const formik = useFormik({
+    initialValues,
+    validationSchema: loginSchema,
+    validateOnChange: true,
+    validateOnBlur: false,
+    onSubmit: (values, action) => {
+      handleLogin(values);    // function to handle login 
+
+      // to get rid of all the values after submitting the form
+      action.resetForm();
+    }
+  })
+
+
+  const handleLogin = async (formData) => {
+    try {
+      const response = await axios.post(`${baseUrl}/users/login`, formData);
+      console.log(response);
+      if (response?.status === 200) {
+        setError('login successful!');
+        Cookies.set('accessToken', response.data.data.accessToken, { expires: 1 }); // set token in cookies
+        Cookies.set('refreshToken', response.data.data.refreshToken, { expires: 1 }); // set token in cookies
+
+        // setLoggedInUser(response.data.data.user)
+        navigate("/");
+      } else {
+        setError('Invalid email or password');
+      }
+    } catch (error) {
+      console.log(error)
+      setError(error.message || 'Error occured while logging in');
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
@@ -49,19 +99,30 @@ function Login() {
           <p className="text-gray-600 mb-6">Sign in to continue</p>
         </div>
 
-        <form>
-          {formFields.map((field, index) => (
-            <div className="mb-4" key={index}>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                {field.label}
-              </label>
-              <input
-                type={field.type}
-                placeholder={field.placeholder}
-                className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          ))}
+        <form onSubmit={formik.handleSubmit}>
+          {
+            formFields.map((field, index) => (
+              <div className="mb-4" key={index}>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {field.label}
+                </label>
+                <input
+                  value={formik.values[field.type]}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  type={field.type}
+                  name={field.type}
+                  id={field.type}
+                  placeholder={field.placeholder}
+                  className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                {
+                  (formik.touched[field.type] && formik.errors[field.type]) &&
+                    <p className="text-red-600">{formik.errors[field.type]}</p>
+                }
+              </div>
+            ))
+          }
 
           <button
             type="submit"
@@ -81,15 +142,17 @@ function Login() {
         </div>
 
         <div className="mt-6 flex justify-center space-x-4">
-          {socialLogins.map((social, index) => (
-            <button
-              key={index}
-              className="bg-gray-100 hover:bg-gray-200 p-2 rounded-full shadow-md"
-              aria-label={`Sign in with ${social.name}`}
-            >
-              <img src={social.icon} alt={social.name} className="w-6" />
-            </button>
-          ))}
+          {
+            socialLogins.map((social, index) => (
+              <button
+                key={index}
+                className="bg-gray-100 hover:bg-gray-200 p-2 rounded-full shadow-md"
+                aria-label={`Sign in with ${social.name}`}
+              >
+                <img src={social.icon} alt={social.name} className="w-6" />
+              </button>
+            ))
+          }
         </div>
       </div>
     </div>
