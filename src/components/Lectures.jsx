@@ -5,29 +5,29 @@ import LectureCard from './LectureCard'; // Component for individual lecture car
 const Lectures = () => {
   const lectures = [
     {
+      id: 'wwd1',
       title: 'Data Structures and Algorithms',
       time: '10:00 AM - 11:30 AM',
       status: 'Ongoing', // Status can be "Scheduled" or "Ongoing"
-      link: 'https://example.com/lecture1',
     },
     {
+      id: 'wwd2',
       title: 'Operating Systems',
       time: '1:00 PM - 2:30 PM',
       status: 'Scheduled',
-      link: 'https://example.com/lecture2',
     },
     {
+      id: 'wwd3',
       title: 'Database Systems',
       time: '3:00 PM - 4:30 PM',
       status: 'Scheduled',
-      link: 'https://example.com/lecture3',
     },
     {
+      id: 'wwd4',
       title: 'Machine Learning',
       time: '4:00 PM - 5:30 PM',
       status: 'Completed',
       attendded: true,
-      link: 'https://example.com/lecture4',
     }
   ];
 
