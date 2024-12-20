@@ -1,19 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Google from "../images/google.png";
+import Facebook from "../images/facebook.png";
+import Twitter from "../images/twitter.png";
+import Logo from "../images/logo.png";
 
 // Social media icons and labels
 const socialLogins = [
   {
     name: "Google",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Google_Logo.svg",
+    icon: Google,
   },
   {
     name: "Facebook",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+    icon: Facebook,
   },
   {
     name: "Twitter",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/4/44/Twitter_Logo.svg",
+    icon: Twitter,
   },
 ];
 
@@ -37,11 +41,11 @@ function Login() {
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
         <div className="text-center">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Google_Classroom_logo.svg"
+            src={Logo}
             alt="Google Classroom"
             className="w-20 mx-auto mb-4"
           />
-          <h1 className="text-2xl font-bold text-gray-800">Welcome to Classroom</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Welcome to Skool</h1>
           <p className="text-gray-600 mb-6">Sign in to continue</p>
         </div>
 

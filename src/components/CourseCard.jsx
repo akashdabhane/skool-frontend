@@ -1,10 +1,13 @@
-// components/CourseCard.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function CourseCard({ title, subtitle, bgColor, avatarText }) {
+function CourseCard({ title, subtitle, bgColor, avatarText, index }) {
+    const navigate = useNavigate();
+
     return (
         <div
-            className={`p-4 rounded-lg shadow-md ${bgColor} text-white relative h-32`}
+            className={`p-4 rounded-lg shadow-md ${bgColor} text-white relative h-32 cursor-pointer`}
+            onClick={() => navigate(`/c/${index}`)}
         >
             <div className="absolute top-2 right-2">
                 <button className="p-1 rounded hover:bg-gray-300">...</button>

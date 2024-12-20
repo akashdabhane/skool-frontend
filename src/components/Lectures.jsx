@@ -1,6 +1,5 @@
 // Main Lectures Page
 import React from 'react';
-import Navbar from './Navbar'; // Assume Navbar is a reusable component
 import LectureCard from './LectureCard'; // Component for individual lecture cards
 
 const Lectures = () => {
@@ -23,6 +22,13 @@ const Lectures = () => {
       status: 'Scheduled',
       link: 'https://example.com/lecture3',
     },
+    {
+      title: 'Machine Learning',
+      time: '4:00 PM - 5:30 PM',
+      status: 'Completed',
+      attendded: true,
+      link: 'https://example.com/lecture4',
+    }
   ];
 
   return (

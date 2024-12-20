@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import CourseCard from "../components/CourseCard";
-
+import Navbar from "../components/Navbar";
 
 function Joinedclassrooms() {
     const courses = [
@@ -55,32 +55,26 @@ function Joinedclassrooms() {
         },
     ];
 
-
     return (
         <div className="flex h-screen">
             <Sidebar />
-            <div className="flex-1 p-6 bg-gray-100">
-                <header className="flex items-center justify-between mb-6">
-                    <h1 className="text-xl font-bold">Classroom</h1>
-                    <div className="flex items-center space-x-4">
-                        <button className="p-2 rounded-full bg-gray-200 hover:bg-gray-300">
-                            +
-                        </button>
-                        <div className="w-10 h-10 bg-purple-500 text-white flex items-center justify-center rounded-full">
-                            A
-                        </div>
+            <div className="flex flex-col w-full">
+                <Navbar title={"Classroom"} />
+                <div className="flex-1 p-6 bg-gray-100">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {
+                            courses.map((course, index) => (
+                                <CourseCard
+                                    key={index}
+                                    title={course.title}
+                                    subtitle={course.subtitle}
+                                    bgColor={course.bgColor}
+                                    avatarText={course.avatarText}
+                                    index={index}
+                                />
+                            ))
+                        }
                     </div>
-                </header>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {courses.map((course, index) => (
-                        <CourseCard
-                            key={index}
-                            title={course.title}
-                            subtitle={course.subtitle}
-                            bgColor={course.bgColor}
-                            avatarText={course.avatarText}
-                        />
-                    ))}
                 </div>
             </div>
         </div>

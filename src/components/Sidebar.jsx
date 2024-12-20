@@ -9,11 +9,11 @@ function Sidebar() {
 
 
   return (
-    <div className={`${showBar ? "w-72" : "w-16"} bg-gray-800 text-white flex flex-col items-center py-4`}>
+    <div className={`${showBar ? "w-72" : "w-16"} bg-gray-800 text-white flex flex-col items-center py-4 skicky`} onMouseEnter={toggleBar} onMouseLeave={toggleBar}>
       <button className="mb-4" onClick={toggleBar}>
         <RxHamburgerMenu className="text-2xl" />
       </button>
-      <nav className="flex-1 flex flex-col space-y-4 text-xl text-white">
+      <nav className="flex-1 flex flex-col space-y-4 text-xl text-white" >
         <button className="hover:bg-gray-700 p-2 rounded bg-white ">
           <span className="sr-only">Home</span>
           <i className="fas fa-home"></i>

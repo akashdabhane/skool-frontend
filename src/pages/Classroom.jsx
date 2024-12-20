@@ -5,7 +5,8 @@ import AnnouncementCard from "../components/AnnouncementCard";
 import UpcomingCard from "../components/UpcomingCard";
 import Classwork from "../components/Classwork";
 import Lectures from "../components/Lectures";
-import { Link } from "react-router-dom";
+import People from "../components/People";
+import Chats from "../components/Chats";
 
 function Classroom() {
     const [nav, setNav] = useState(0);
@@ -26,10 +27,10 @@ function Classroom() {
     return (
         <div className="flex h-screen bg-gray-100">
             <Sidebar />
-            <div className="flex-1">
-                <Navbar title="SYSS - Next Generation Databases - CO19311" />
+            <div className="flex-1 overflow-y-scroll ">
+                <Navbar title="Classroom > SYSS - Next Generation Databases - CO19311" />
                 <div className="p-6 pt-4">
-                    <SubNavbar setNav={setNav} />
+                    <SubNavbar nav={nav} setNav={setNav} />
 
                     {
                         nav === 0 && (
@@ -71,6 +72,16 @@ function Classroom() {
                             <Lectures />
                         )
                     }
+                    {
+                        nav === 3 && (
+                            <Chats />
+                        )
+                    }
+                    {
+                        nav === 4 && (
+                            <People />
+                        )
+                    }
                 </div>
             </div>
         </div>
@@ -82,27 +93,29 @@ export default Classroom;
 
 
 // sub navbar Navbar Component
-const SubNavbar = ({ setNav }) => {
+const SubNavbar = ({ nav, setNav }) => {
     const tabs = [
         { name: 'Stream' },
         { name: 'Classwork' },
         { name: 'Lectures' },
-        { name: 'Chat' },
+        { name: 'Chats' },
         { name: 'People' },
     ];
 
     return (
-        <div className="bg-white shadow sticky top-0 z-10">
+        <div className="bg-white shadow sticky top-20 z-10 ">
             <ul className="flex justify-around md:justify-start md:space-x-6 px-4 py-3">
-                {tabs.map((tab, index) => (
-                    <li
-                        key={index}
-                        className="min-w-16 cursor-pointer p-2 rounded hover:bg-slate-200 text-gray-600 hover:text-blue-500 font-medium md:text-md"
-                        onClick={() => setNav(index)}
-                    >
-                        {tab.name}
-                    </li>
-                ))}
+                {
+                    tabs.map((tab, index) => (
+                        <li
+                            key={index}
+                            className={`${nav === index && "border-b-2 border-blue-500"} min-w-16 cursor-pointer p-2 rounded hover:bg-slate-200 text-gray-600 hover:text-blue-500 font-medium md:text-md`}
+                            onClick={() => setNav(index)}
+                        >
+                            {tab.name}
+                        </li>
+                    ))
+                }
             </ul>
         </div>
     );

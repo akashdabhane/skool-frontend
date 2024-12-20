@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Lecture from "./pages/Lecture";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
 
           {/* lecture */}
           <Route path="/lec/:lectureid" element={<Lecture />} />
+
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </BrowserRouter>
     </div>

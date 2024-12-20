@@ -11,18 +11,12 @@ function Classwork() {
 
   return (
     <div className="h-screen bg-gray-100">
-      {/* <Navbar title="Classroom > SYSS-Next Generation Databases-CO19311" /> */}
-
       <div className="p-6">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-xl font-bold">Classwork</h1>
-          <button className="text-blue-600 font-medium">View your work</button>
-        </div>
-
-        <div className="mb-6">
-          <select className="border-gray-300 rounded-md shadow-sm px-4 py-2">
+        <div className="mb-6 flex justify-between items-center ">
+          <select className="border-gray-300 rounded-md shadow-sm px-4 py-2 min-w-44">
             <option>All topics</option>
           </select>
+          <button className="text-blue-600 font-medium">View your work</button>
         </div>
 
         <div className="space-y-4">
