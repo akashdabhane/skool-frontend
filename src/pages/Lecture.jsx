@@ -1,18 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { AiOutlineAudio, AiOutlineAudioMuted } from "react-icons/ai";
+import { LuVideo, LuScreenShare, LuVideoOff } from "react-icons/lu";
+import { BsBadgeCc } from "react-icons/bs";
+import { MdOutlineEmojiEmotions, MdCallEnd, MdOutlineMessage } from "react-icons/md";
+import { FaRegHandPaper } from "react-icons/fa";
+import { GoInfo, GoPeople } from "react-icons/go";
+import { RiShapesLine } from "react-icons/ri";
+import VideoCallRightPanel from "../components/videoCall/VideoCallRightPanel";
 
 const Lecture = () => {
-  const Participants = [
-    {
-      name: "Akash Dabhane",
-      profileImage: "",
-      color: "purple",
-    },
-    {
-      name: "Lakhan",
-      profileImage: "",
-      color: "green",
-    },
-  ]
+  const [panelNav, setPanelNav] = useState(null);
 
 
   return (
@@ -26,41 +23,33 @@ const Lecture = () => {
           </div>
         </div>
 
-        {/* Participant List */}
-        <div className="w-1/4 bg-gray-800 p-4 space-y-4">
-          {
-            Participants.map((participant, index) => (
-              <ParticipantCard participant={participant} index={index} />
-            ))
-          }
-        </div>
+        <VideoCallRightPanel panelNav={panelNav} setPanelNav={setPanelNav} />
       </div>
 
       {/* Bottom Bar */}
       <div className="flex justify-between items-center px-6 py-3 bg-gray-800">
-        {/* bottom Bar */}
+        {/* Left Bottom */}
         <div className="flex justify-between items-center px-4 py-2 bg-gray-800 text-white">
           <p className="text-sm">{new Date().getHours() + ":" + new Date().getMinutes()} | abg-jivj-bpg</p>
         </div>
 
-        {/* Left Buttons */}
-        <div className="flex space-x-4">
-          <button className="bg-red-600 p-2 rounded-full text-white">
-            <i className="fas fa-microphone-slash"></i>
-          </button>
-          <button className="bg-red-600 p-2 rounded-full text-white">
-            <i className="fas fa-video-slash"></i>
-          </button>
+        {/* Center Button */}
+        <div className="space-x-3 flex items-center text-5xl p-2 px-4 rounded-xl bg-gray-600">
+          <AiOutlineAudio className="p-2 bg-gray-400 rounded-full cursor-pointer" />
+          <LuVideo className="p-2 bg-gray-400 rounded-full cursor-pointer" />
+          <BsBadgeCc className="p-2 bg-gray-400 rounded-full cursor-pointer" />
+          <MdOutlineEmojiEmotions className="p-2 bg-gray-400 rounded-full cursor-pointer" />
+          <LuScreenShare className="p-2 bg-gray-400 rounded-full cursor-pointer" />
+          <FaRegHandPaper className="p-2 bg-gray-400 rounded-full cursor-pointer" />
+          <MdCallEnd className="p-2 bg-red-500 rounded-full cursor-pointer" />
         </div>
 
-        {/* Right Buttons */}
-        <div className="flex space-x-4">
-          <button className="text-gray-400 hover:text-white">
-            <i className="fas fa-cog"></i>
-          </button>
-          <button className="bg-red-600 p-2 rounded-full text-white">
-            <i className="fas fa-phone"></i>
-          </button>
+        {/* Right Button */}
+        <div className="flex space-x-3 items-center text-3xl p-2">
+          <GoInfo className="p-1 hover:bg-gray-600 rounded-full cursor-pointer" onClick={() => setPanelNav(0)} />
+          <GoPeople className="p-1 hover:bg-gray-600 rounded-full cursor-pointer" onClick={() => setPanelNav(1)} />
+          <MdOutlineMessage className="p-1 hover:bg-gray-600 rounded-full cursor-pointer" onClick={() => setPanelNav(2)} />
+          <RiShapesLine className="p-1 hover:bg-gray-600 rounded-full cursor-pointer" onClick={() => setPanelNav(3)} />
         </div>
       </div>
     </div>
@@ -68,26 +57,3 @@ const Lecture = () => {
 };
 
 export default Lecture;
-
-
-
-const ParticipantCard = ({ participant, index }) => {
-  const extractFirstLetter = (word) => {
-    return word.charAt(0).toUpperCase();
-  }
-
-  return (
-    <div className="flex items-center justify-between" key={index}>
-      <div className="flex items-center">
-        <div className={`bg-${participant.color}-500 rounded-full w-10 h-10 flex justify-center items-center`}>
-          <p className="text-white text-lg">{participant.profileImage === "" ? extractFirstLetter(participant.name) : participant.profileImage}</p>
-        </div>
-        <p className="ml-2 text-white">{participant.name}</p>
-      </div>
-      <button className="text-gray-400 hover:text-white">
-        <i className="fas fa-ellipsis-v"></i>
-      </button>
-    </div>
-  )
-}
-

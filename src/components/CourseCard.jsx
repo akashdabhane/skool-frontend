@@ -6,11 +6,11 @@ function CourseCard({ title, subtitle, bgColor, avatarText, index }) {
 
     return (
         <div
-            className={`p-4 rounded-lg shadow-md ${bgColor} text-white relative h-32 cursor-pointer`}
+            className={`p-4 rounded-lg shadow-md ${bgColor} text-white relative h-36 cursor-pointer`}
             onClick={() => navigate(`/c/${index}`)}
         >
             <div className="absolute top-2 right-2">
-                <button className="p-1 rounded hover:bg-gray-300">...</button>
+                <button className="p-1 rounded text-xl">...</button>
             </div>
             <h2 className="text-lg font-bold">{title}</h2>
             <p className="text-sm">{subtitle}</p>
@@ -22,7 +22,7 @@ function CourseCard({ title, subtitle, bgColor, avatarText, index }) {
                     📁
                 </button>
             </div>
-            <div className="absolute top-2 left-2 w-10 h-10 bg-purple-500 flex items-center justify-center rounded-full">
+            <div className="absolute top-[30%] right-10 w-14 h-14 bg-purple-500 flex items-center justify-center rounded-full text-2xl">
                 {avatarText}
             </div>
         </div>

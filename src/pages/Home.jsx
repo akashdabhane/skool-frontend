@@ -8,12 +8,12 @@ const Home = () => {
     const features = [
         {
             icon: FaChalkboardTeacher,
-            title: 'Google Classroom',
+            title: 'Classroom',
             description: 'Access and manage classroom materials with ease.',
         },
         {
             icon: FaVideo,
-            title: 'Google Meet',
+            title: 'Video Call',
             description: 'Join and conduct virtual meetings effortlessly.',
         },
         {
@@ -41,7 +41,8 @@ const Home = () => {
                 <img
                     src={Logo}
                     alt='skool logo'
-                    className="w-16" />
+                    className="h-10 w-20 object-cover object-center cursor-pointer"
+                />
                 <ul className="flex gap-6">
                     <li><Link to="#" className="text-gray-700 hover:text-blue-500">Home</Link></li>
                     <li><Link to="#" className="text-gray-700 hover:text-blue-500">About</Link></li>
@@ -54,31 +55,33 @@ const Home = () => {
 
             {/* Hero Section */}
             <header className="bg-blue-500 text-white py-16 px-8 text-center">
-                <h2 className="text-4xl font-bold mb-4">Welcome to EduConnect</h2>
+                <h2 className="text-4xl font-bold mb-4">Welcome to Skool</h2>
                 <p className="text-lg mb-6">A seamless platform for learning, collaboration, and growth.</p>
                 <button className="bg-white text-blue-500 font-semibold py-2 px-6 rounded hover:bg-gray-100"
                     onClick={handleGetStartedClick}>Get Started</button>
             </header>
 
             {/* Features Section */}
-            <section className="py-16 px-8">
+            <section className="py-12 px-8">
                 <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Our Features</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {features.map((feature, index) => (
-                        <FeatureCard
-                            key={index}
-                            icon={feature.icon}
-                            title={feature.title}
-                            description={feature.description}
-                        />
-                    ))}
+                    {
+                        features.map((feature, index) => (
+                            <FeatureCard
+                                key={index}
+                                icon={feature.icon}
+                                title={feature.title}
+                                description={feature.description}
+                            />
+                        ))
+                    }
                 </div>
             </section>
 
             {/* Footer */}
-            <footer className="bg-gray-800 text-white py-6 text-center">
+            {/* <footer className="bg-gray-800 text-white py-6 text-center">
                 <p>&copy; 2024 EduConnect. All rights reserved.</p>
-            </footer>
+            </footer> */}
         </div>
     );
 };

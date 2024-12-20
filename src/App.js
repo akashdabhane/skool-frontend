@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Lecture from "./pages/Lecture";
 import Settings from "./pages/Settings";
+import JoinLecture from "./pages/JoinLecture";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/c/:classid" element={<Classroom />} />
 
           {/* lecture */}
+          <Route path="/lec/join/:lectureid" element={<JoinLecture />} />
           <Route path="/lec/:lectureid" element={<Lecture />} />
 
           <Route path="/settings" element={<Settings />} />
