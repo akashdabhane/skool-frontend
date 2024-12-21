@@ -14,10 +14,9 @@ const LectureCard = ({ lecture }) => {
             <p className="text-sm text-gray-600 mb-2">{lecture.time}</p>
             <p className={`inline-block px-3 py-1 text-xs font-semibold rounded-full 
                 ${lecture.status === 'Ongoing' && 'bg-green-100 text-green-700'} 
-            ${lecture.status === "Scheduled" && 'bg-blue-100 text-blue-700'} 
-            ${lecture.status === "Completed" && 'bg-gray-100 text-gray-700'}`
-            }
-            >
+                ${lecture.status === "Scheduled" && 'bg-blue-100 text-blue-700'} 
+                ${lecture.status === "Completed" && 'bg-gray-100 text-gray-700'}`
+            }>
                 {lecture.status}
             </p>
             <Link
@@ -25,10 +24,10 @@ const LectureCard = ({ lecture }) => {
                 rel="noopener noreferrer"
                 className="block"
             >
-                <button className={`mt-4 text-white p-2 hover:underline text-sm rounded 
+                <button className={`mt-4 text-white p-2 text-sm rounded 
                     ${lecture.status === 'Ongoing' && "bg-green-500"} 
-                ${lecture.status === 'Scheduled' && "bg-blue-500"} 
-                ${lecture.status === 'Completed' && "bg-gray-500"} `
+                    ${lecture.status === 'Scheduled' && "bg-blue-500"} 
+                    ${lecture.status === 'Completed' && "bg-gray-500"} `
                 }>
                     {
                         lecture.status === "Ongoing"

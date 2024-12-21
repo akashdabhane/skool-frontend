@@ -7,6 +7,9 @@ import Home from "./pages/Home";
 import Lecture from "./pages/Lecture";
 import Settings from "./pages/Settings";
 import JoinLecture from "./pages/JoinLecture";
+import AssignmentDetails from "./pages/AssignmentDetails";
+import MaterialDetails from "./pages/MaterialDetails";
+
 
 function App() {
   return (
@@ -18,6 +21,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/c/" element={<Joinedclassrooms />} />
           <Route path="/c/:classid" element={<Classroom />} />
+          <Route path="/c/a/:assignmentid" element={<AssignmentDetails />} />
+          <Route path="/c/m/:materialid" element={<MaterialDetails />} />
 
           {/* lecture */}
           <Route path="/lec/join/:lectureid" element={<JoinLecture />} />

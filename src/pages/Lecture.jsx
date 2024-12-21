@@ -10,7 +10,18 @@ import VideoCallRightPanel from "../components/videoCall/VideoCallRightPanel";
 
 const Lecture = () => {
   const [panelNav, setPanelNav] = useState(null);
+  const [navObject, setNavObject] = useState({
+    isAudioMuted: true,
+    isVideoMuted: true,
+    isScreenSharing: false,
+    isCarbanCopyOn: false,
+  })
+  console.log(navObject.isAudioMuted)
 
+  const styles = {
+    videoChatActions: "p-2 bg-gray-400 rounded-full cursor-pointer",
+    videoChatPanelActions: "p-1 hover:bg-gray-600 rounded-full cursor-pointer",
+  }
 
   return (
     <div className="bg-gray-900 h-screen flex flex-col">
@@ -35,21 +46,21 @@ const Lecture = () => {
 
         {/* Center Button */}
         <div className="space-x-3 flex items-center text-5xl p-2 px-4 rounded-xl bg-gray-600">
-          <AiOutlineAudio className="p-2 bg-gray-400 rounded-full cursor-pointer" />
-          <LuVideo className="p-2 bg-gray-400 rounded-full cursor-pointer" />
-          <BsBadgeCc className="p-2 bg-gray-400 rounded-full cursor-pointer" />
-          <MdOutlineEmojiEmotions className="p-2 bg-gray-400 rounded-full cursor-pointer" />
-          <LuScreenShare className="p-2 bg-gray-400 rounded-full cursor-pointer" />
-          <FaRegHandPaper className="p-2 bg-gray-400 rounded-full cursor-pointer" />
+          <AiOutlineAudio className={styles.videoChatActions} />
+          <LuVideo className={styles.videoChatActions} />
+          <BsBadgeCc className={styles.videoChatActions} />
+          <MdOutlineEmojiEmotions className={styles.videoChatActions} />
+          <LuScreenShare className={styles.videoChatActions} />
+          <FaRegHandPaper className={styles.videoChatActions} />
           <MdCallEnd className="p-2 bg-red-500 rounded-full cursor-pointer" />
         </div>
 
         {/* Right Button */}
         <div className="flex space-x-3 items-center text-3xl p-2">
-          <GoInfo className="p-1 hover:bg-gray-600 rounded-full cursor-pointer" onClick={() => setPanelNav(0)} />
-          <GoPeople className="p-1 hover:bg-gray-600 rounded-full cursor-pointer" onClick={() => setPanelNav(1)} />
-          <MdOutlineMessage className="p-1 hover:bg-gray-600 rounded-full cursor-pointer" onClick={() => setPanelNav(2)} />
-          <RiShapesLine className="p-1 hover:bg-gray-600 rounded-full cursor-pointer" onClick={() => setPanelNav(3)} />
+          <GoInfo className={styles.videoChatPanelActions} onClick={() => panelNav !== 0 ? setPanelNav(0) : setPanelNav(null)} />
+          <GoPeople className={styles.videoChatPanelActions} onClick={() => panelNav !== 1 ? setPanelNav(1) : setPanelNav(null)} />
+          <MdOutlineMessage className={styles.videoChatPanelActions} onClick={() => panelNav !== 2 ? setPanelNav(2) : setPanelNav(null)} />
+          <RiShapesLine className={styles.videoChatPanelActions} onClick={() => panelNav !== 3 ? setPanelNav(3) : setPanelNav(null)} />
         </div>
       </div>
     </div>

@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 const Settings = () => {
     return (
-        <div className="min-h-screen bg-gray-100 flex">
+        <div className="h-screen bg-gray-100 flex">
             <Sidebar />
-            <div className="w-full">
+            <div className="w-full overflow-y-scroll">
                 <Navbar title={"Skool > Settings"} />
                 <div className="max-w-4xl mx-auto py-4">
                     <h1 className="text-3xl font-bold mb-6">Settings</h1>

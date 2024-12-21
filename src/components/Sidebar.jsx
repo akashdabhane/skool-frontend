@@ -10,7 +10,7 @@ function Sidebar() {
 
 
   return (
-    <div className={`${showBar ? "w-72" : "w-16"} bg-gray-800 text-white flex flex-col items-center py-4 skicky`} onMouseEnter={toggleBar} onMouseLeave={toggleBar}>
+    <div className={`${showBar ? "w-72" : "w-16"} h-full bg-gray-800 text-white flex flex-col items-center py-4 skicky`} onMouseEnter={toggleBar} onMouseLeave={toggleBar}>
       <button className="mb-8 my-2" onClick={toggleBar}>
         <RxHamburgerMenu className="text-2xl" />
       </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../images/logo.png";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 const JoinLecture = () => {
     return (
         <div className="min-h-screen flex flex-col">
@@ -58,11 +58,15 @@ const MainCard = () => {
 
 
 const RightPanel = () => {
+    const navigate = useNavigate();
+    
     return (
         <div className="hidden md:flex w-1/4 bg-gray-100 flex-col p-4">
             <h2 className="text-lg font-semibold mb-2">Ready to join?</h2>
             <p className="text-sm text-gray-600 mb-4">No one else is here</p>
-            <button className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 mb-2">
+            <button className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 mb-2"
+                onClick={() => navigate(`/lec/${"3434"}`)}
+            >
                 Join now
             </button>
             <button className="w-full bg-gray-200 text-gray-600 py-2 rounded-md hover:bg-gray-300 mb-2">

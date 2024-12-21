@@ -1,5 +1,6 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
+import { AiOutlineAudio, AiOutlineAudioMuted, AiOutlineMore } from "react-icons/ai";
 
 const videoCallRightPanelPeople = ({ closePanelNav }) => {
     const Participants = [
@@ -72,9 +73,14 @@ const ParticipantCard = ({ participant, index }) => {
                 </div>
                 <p className="ml-2 text-white">{participant.name}</p>
             </div>
-            <button className="text-gray-400 hover:text-white">
-                <i className="fas fa-ellipsis-v"></i>
-            </button>
+            <div className="space-x-1 flex items-center justify-center">
+                <button className="text-gray-400 hover:bg-gray-600 rounded-full p-1 text-xl">
+                    {participant.isMuted ? <AiOutlineAudioMuted /> : <AiOutlineAudio />}
+                </button>
+                <button className="text-gray-400 hover:bg-gray-600 rounded-full p-1 text-xl">
+                    <AiOutlineMore />
+                </button>
+            </div>
         </div>
     )
 }
