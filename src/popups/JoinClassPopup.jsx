@@ -1,6 +1,36 @@
+import axios from "axios";
 import React from "react";
+import { baseUrl } from "../utils/helper";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
 
 const JoinClassPopup = ({ closePopup }) => {
+  const navigate = useNavigate();
+
+  const handleJoinClassroom = () => {
+    try {
+      axios.post(`${baseUrl}class/join-classroom/${"classid"}`,
+        {
+          withCredentials: true,
+          headers: {
+            'Authorization': `Bearer ${Cookies.get("accessToken")}`
+          }
+        })
+        .then((response) => {
+          console.log(response.data);
+          closePopup();
+          navigate('/c')
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white w-full max-w-md mx-auto rounded-lg shadow-lg p-6">

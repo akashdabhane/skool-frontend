@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
 import { AiOutlineAudio, AiOutlineAudioMuted, AiOutlineMore } from "react-icons/ai";
+import { extractFirstLetter } from "../../utils/helper";
 
 const videoCallRightPanelPeople = ({ closePanelNav }) => {
     const Participants = [
@@ -61,9 +62,6 @@ export default videoCallRightPanelPeople;
 
 
 const ParticipantCard = ({ participant, index }) => {
-    const extractFirstLetter = (word) => {
-        return word.charAt(0).toUpperCase();
-    }
 
     return (
         <div className="flex items-center justify-between">

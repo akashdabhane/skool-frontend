@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`${baseUrl}/users/logged-in-user`,
+        axios.get(`${baseUrl}users/current-user`,
             {
                 withCredentials: true,
                 headers: {
@@ -18,7 +18,7 @@ const ProtectedRoute = ({ children }) => {
                 }
             })
             .then((response) => {
-                setLoggedInUser(response.data.data);
+                setLoggedInUser(response.data.data.user);
             })
             .catch((error) => {
                 console.log(error);

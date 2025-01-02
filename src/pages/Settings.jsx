@@ -1,9 +1,33 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { baseUrl } from '../utils/helper';
+import Cookies from 'js-cookie';
+
 
 const Settings = () => {
+    const navigate = useNavigate();
+
+    const handleLogoutClick = () => {
+        axios.post(`${baseUrl}users/logout`, {
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${Cookies.get('accessToken')}`
+            }
+        })
+        .then((response) => {
+            console.log(response);
+            Cookies.remove('accessToken');
+            
+            navigate('/login');
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
     return (
         <div className="h-screen bg-gray-100 flex">
             <Sidebar />

@@ -9,6 +9,7 @@ import { loginSchema } from "../validationSchema/loginSchema";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { baseUrl } from "../utils/helper";
+import { useAuth } from "../contexts/AuthContext";
 
 // Social media icons and labels
 const socialLogins = [
@@ -43,6 +44,7 @@ const formFields = [
 function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const { setLoggedInUser } = useAuth();
 
   // using formik for handling input fields
   const initialValues = {
@@ -68,15 +70,15 @@ function Login() {
 
   const handleLogin = async (formData) => {
     try {
-      const response = await axios.post(`${baseUrl}/users/login`, formData);
+      const response = await axios.post(`${baseUrl}users/login`, formData);
       console.log(response);
       if (response?.status === 200) {
         setError('login successful!');
         Cookies.set('accessToken', response.data.data.accessToken, { expires: 1 }); // set token in cookies
         Cookies.set('refreshToken', response.data.data.refreshToken, { expires: 1 }); // set token in cookies
 
-        // setLoggedInUser(response.data.data.user)
-        navigate("/");
+        setLoggedInUser(response.data.data.user)
+        navigate("/c");
       } else {
         setError('Invalid email or password');
       }
@@ -118,7 +120,7 @@ function Login() {
                 />
                 {
                   (formik.touched[field.type] && formik.errors[field.type]) &&
-                    <p className="text-red-600">{formik.errors[field.type]}</p>
+                  <p className="text-red-600">{formik.errors[field.type]}</p>
                 }
               </div>
             ))

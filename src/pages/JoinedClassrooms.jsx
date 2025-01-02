@@ -1,76 +1,104 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import CourseCard from "../components/CourseCard";
 import Navbar from "../components/Navbar";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { baseUrl } from "../utils/helper";
 
 function Joinedclassrooms() {
+    const [classes, setClasses] = useState([]);
+    const bgColor = "blue";
+
+    useEffect(() => {
+        axios.get(`${baseUrl}class/get-all-classrooms`,
+            {
+                withCredentials: true,
+                headers: {
+                    'Authorization': `Bearer ${Cookies.get('accessToken')}`
+                }
+            })
+            .then((response) => {
+                console.log(response.data.data);
+                setClasses(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }, [])
+
     const courses = [
         {
-            title: "TE comp",
-            subtitle: "pallavi.mangrulkar16 pp",
-            bgColor: "bg-blue-500",
+            classname: "TE comp",
+            description: "pallavi.mangrulkar16 pp",
+            bgColor: "blue",
             avatarText: "P",
+            _id: 1
         },
         {
-            title: "In Plant Training 2022",
-            subtitle: "ss20 gpmco",
-            bgColor: "bg-green-500",
+            classname: "In Plant Training 2022",
+            description: "ss20 gpmco",
+            bgColor: "green",
             avatarText: "S",
+            _id: 2
         },
         {
-            title: "GPM Course Code: IT",
-            subtitle: "Sagar Mohite",
-            bgColor: "bg-gray-500",
+            classname: "GPM Course Code: IT",
+            description: "Sagar Mohite",
+            bgColor: "gray",
             avatarText: "S",
+            _id: 3
         },
         {
-            title: "Network Management",
-            subtitle: "TYSS Nilesh Kitke",
-            bgColor: "bg-black text-white",
+            classname: "Network Management",
+            description: "TYSS Nilesh Kitke",
+            bgColor: "red",
             avatarText: "N",
+            _id: 4
         },
         {
-            title: "CS 2022_23",
-            subtitle: "Both shifts Rupali Molawade",
-            bgColor: "bg-gray-800 text-white",
+            classname: "CS 2022_23",
+            description: "Both shifts Rupali Molawade",
+            bgColor: "gray",
             avatarText: "R",
+            _id: 5
         },
         {
-            title: "TYSS-Data Analytics",
-            subtitle: "Vrushali Patil",
-            bgColor: "bg-blue-700",
+            classname: "TYSS-Data Analytics",
+            description: "Vrushali Patil",
+            bgColor: "blue",
             avatarText: "V",
+            _id: 6
         },
         {
-            title: "OS 2ndShift",
-            subtitle: "2nd sy fs",
-            bgColor: "bg-blue-500",
+            classname: "OS 2ndShift",
+            description: "2nd sy fs",
+            bgColor: "blue",
             avatarText: "SY",
+            _id: 7
         },
         {
-            title: "SYSS",
-            subtitle: "II Megha Kapse",
-            bgColor: "bg-gray-500",
+            classname: "SYSS",
+            description: "II Megha Kapse",
+            bgColor: "gray",
             avatarText: "M",
+            _id: 8
         },
     ];
 
     return (
-        <div className="flex h-screen">
-            <Sidebar />
-            <div className="flex flex-col w-full">
-                <Navbar title={"Classroom"} />
-                <div className="flex-1 p-6 bg-gray-100">
+        <div className="flex flex-col w-full">
+            <Navbar showMenu={false} />
+            <div className="flex h-screen">
+                <Sidebar />
+                <div className="flex-1 p-6 gray-100">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {
-                            courses.map((course, index) => (
+                            classes.map((course) => (
                                 <CourseCard
-                                    key={index}
-                                    title={course.title}
-                                    subtitle={course.subtitle}
-                                    bgColor={course.bgColor}
-                                    avatarText={course.avatarText}
-                                    index={index}
+                                    course={course}
+                                    bgColor={bgColor}
+                                    key={course._id}
                                 />
                             ))
                         }
