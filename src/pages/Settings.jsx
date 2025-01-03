@@ -17,23 +17,23 @@ const Settings = () => {
                 'Authorization': `Bearer ${Cookies.get('accessToken')}`
             }
         })
-        .then((response) => {
-            console.log(response);
-            Cookies.remove('accessToken');
-            
-            navigate('/login');
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            .then((response) => {
+                console.log(response);
+                Cookies.remove('accessToken');
+
+                navigate('/login');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     return (
-        <div className="h-screen bg-gray-100 flex">
-            <Sidebar />
-            <div className="w-full overflow-y-scroll">
-                <Navbar title={"Skool > Settings"} />
-                <div className="max-w-4xl mx-auto py-4">
+        <div className="flex-1 ">
+            <Navbar showMenu={true} />
+            <div className="flex h-full bg-gray-100">
+                <Sidebar />
+                <div className="w-full max-w-4xl mx-auto py-4 px-2 md:px-0 ">
                     <h1 className="text-3xl font-bold mb-6">Settings</h1>
                     <ProfileCard />
                     <NotificationCard />
@@ -50,7 +50,7 @@ export default Settings;
 // ProfileCard Component
 const ProfileCard = () => {
     return (
-        <div className="bg-white shadow-md rounded-lg p-6 mb-6">
+        <div className="bg-white shadow-md rounded-lg p-4 md:p-6 mb-6">
             <h2 className="text-xl font-semibold mb-4">Profile</h2>
             <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center text-lg">
@@ -90,7 +90,7 @@ const NotificationCard = () => {
     );
 
     return (
-        <div className="bg-white shadow-md rounded-lg p-6 mb-6">
+        <div className="bg-white shadow-md rounded-lg p-4 md:p-6 mb-6">
             <h2 className="text-xl font-semibold mb-4">Notifications</h2>
             <h3 className="text-lg font-medium mb-2">Email</h3>
             {toggleSwitch('Allow email notifications')}
@@ -112,7 +112,7 @@ const NotificationCard = () => {
 // ClassNotifications Component
 const ClassNotifications = () => {
     return (
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="bg-white shadow-md rounded-lg p-4 md:p-6">
             <h2 className="text-xl font-semibold mb-4">Class Notifications</h2>
             <p className="text-gray-700">
                 These settings apply to both your email and device notifications for

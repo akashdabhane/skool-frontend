@@ -39,7 +39,7 @@ function Navbar({ showMenu }) {
 
           {
             showMenu === true && (
-              <ul className="flex justify-around md:justify-start md:space-x-6">
+              <ul className="hidden md:flex justify-around md:justify-start md:space-x-6">
                 {
                   navs.map((nav) => (
                     <Link key={nav._id} to={nav.link} onClick={() => setShowPage(nav._id)}>

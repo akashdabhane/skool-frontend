@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import AnnouncementCard from "../components/AnnouncementCard";
-import UpcomingCard from "../components/UpcomingCard";
-// import Classwork from "./Classwork";
-// import Lectures from "../components/Lectures";
-// import People from "../components/People";
-// import Chats from "../components/Chats";
+import AnnouncementCard from "../components/classroom/AnnouncementCard";
+import UpcomingCard from "../components/classroom/UpcomingCard";
 import axios from "axios";
 import { baseUrl } from "../utils/helper";
 import Cookies from "js-cookie";
@@ -53,41 +49,35 @@ function Classroom() {
             <Navbar showMenu={true} />
             <div className="flex h-screen bg-gray-100">
                 <Sidebar />
-                <div className="p-6 pt-4 w-full">
-                    {/* <SubNavbar nav={nav} setNav={setNav} /> */}
+                <div className="p-2 md:p-6 pt-4 w-full">
+                    <>
+                        {/* Banner */}
+                        <div className="bg-blue-500 text-white rounded-lg p-6 mb-6">
+                            <h1 className="text-2xl font-bold">{classroom.classname}</h1>
+                            <p className="mt-2 text-sm">{classroom.description}</p>
+                        </div>
 
-                    {
-                        nav === 0 && (
-                            <>
-                                {/* Banner */}
-                                <div className="bg-blue-500 text-white rounded-lg p-6 mb-6">
-                                    <h1 className="text-2xl font-bold">{classroom.classname}</h1>
-                                    <p className="mt-2 text-sm">{classroom.description}</p>
-                                </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            {/* Left Column */}
+                            <div className="lg:col-span-2 space-y-4">
+                                {
+                                    announcements.map((announcement, index) => (
+                                        <AnnouncementCard
+                                            key={index}
+                                            name={announcement.name}
+                                            date={announcement.date}
+                                            title={announcement.title}
+                                        />
+                                    ))
+                                }
+                            </div>
 
-                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                                    {/* Left Column */}
-                                    <div className="lg:col-span-2 space-y-4">
-                                        {
-                                            announcements.map((announcement, index) => (
-                                                <AnnouncementCard
-                                                    key={index}
-                                                    name={announcement.name}
-                                                    date={announcement.date}
-                                                    title={announcement.title}
-                                                />
-                                            ))
-                                        }
-                                    </div>
-
-                                    {/* Right Column */}
-                                    <div>
-                                        <UpcomingCard message="Woohoo, no work due in soon!" />
-                                    </div>
-                                </div>
-                            </>
-                        )
-                    }
+                            {/* Right Column */}
+                            <div>
+                                <UpcomingCard message="Woohoo, no work due in soon!" />
+                            </div>
+                        </div>
+                    </>
                 </div>
             </div>
         </div>

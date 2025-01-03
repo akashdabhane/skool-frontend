@@ -32,8 +32,8 @@ const JoinClassPopup = ({ closePopup }) => {
 
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white w-full max-w-md mx-auto rounded-lg shadow-lg p-6">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-2">
+      <div className="bg-white w-full max-w-md mx-auto rounded-lg shadow-lg p-4 md:p-6">
         <div className="mb-4">
           <h2 className="text-lg font-semibold">Join class</h2>
         </div>

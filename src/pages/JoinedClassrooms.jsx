@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import CourseCard from "../components/CourseCard";
+import CourseCard from "../components/classroom/CourseCard";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -87,11 +87,11 @@ function Joinedclassrooms() {
     ];
 
     return (
-        <div className="flex flex-col w-full">
+        <div className="flex-1">
             <Navbar showMenu={false} />
             <div className="flex h-screen">
                 <Sidebar />
-                <div className="flex-1 p-6 gray-100">
+                <div className="p-6 pt-4 w-full ">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {
                             classes.map((course) => (

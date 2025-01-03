@@ -42,10 +42,10 @@ const People = () => {
             <Navbar showMenu={true} />
             <div className="flex bg-gray-100">
                 <Sidebar />
-                <div className="p-6 pt-4 w-full">
+                <div className="p-2 md:p-6 pt-4 w-full">
 
                     <div className="min-h-screen bg-gray-50">
-                        <div className="px-4 py-6">
+                        <div className="p-2 md:px-4 md:py-6">
                             {/* Teachers Section */}
                             <h2 className="text-2xl font-semibold mb-4">Teachers</h2>
                             <div className="bg-white shadow-sm rounded-lg">

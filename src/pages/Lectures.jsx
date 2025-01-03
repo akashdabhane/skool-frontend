@@ -1,6 +1,6 @@
 // Main Lectures Page
 import React from 'react';
-import LectureCard from '../components/LectureCard'; // Component for individual lecture cards
+import LectureCard from '../components/classroom/LectureCard'; // Component for individual lecture cards
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 
@@ -38,14 +38,14 @@ const Lectures = () => {
       <Navbar showMenu={true} />
       <div className="flex h-screen bg-gray-100">
         <Sidebar />
-        <div className="p-6 pt-4 w-full">
+        <div className="p-3 md:p-8 pt-4 w-full">
 
           {
             lectures.length > 0
               ?
               <div className="min-h-screen bg-gray-100">
                 {/* Page Content */}
-                <div className="p-4 md:p-8">
+                <div className="">
                   <h1 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6">Lectures</h1>
                   <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {lectures.map((lecture, index) => (

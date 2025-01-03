@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { extractFirstLetter } from "../utils/helper";
+import { extractFirstLetter } from "../../utils/helper";
 
 function CourseCard({ course, bgColor }) {
     const navigate = useNavigate();

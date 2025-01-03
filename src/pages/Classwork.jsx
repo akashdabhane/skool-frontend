@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ClassworkCard from "../components/ClassworkCard";
+import ClassworkCard from "../components/classroom/ClassworkCard";
 import axios from "axios";
 import { baseUrl } from "../utils/helper";
 import Cookies from 'js-cookie';
@@ -57,10 +57,10 @@ function Classwork() {
       <Navbar showMenu={true} />
       <div className="flex bg-gray-100">
         <Sidebar />
-        <div className="p-6 pt-4 w-full">
+        <div className="p-2 md:p-8 pt-4 w-full">
 
           <div className="h-screen bg-gray-100">
-            <div className="p-6">
+            <div className="">
               <div className="mb-6 flex justify-between items-center ">
                 <select className="border-gray-300 rounded-md shadow-sm px-4 py-2 min-w-44">
                   <option>All topics</option>

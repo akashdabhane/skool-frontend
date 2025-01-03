@@ -1,6 +1,6 @@
 import React from "react";
-import ChatList from "../components/ChatList";
-import ChatWindow from "../components/ChatWindow";
+import ChatList from "../components/chat/ChatList";
+import ChatWindow from "../components/chat/ChatWindow";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 
@@ -10,7 +10,7 @@ const Chats = () => {
             <Navbar showMenu={true} />
             <div className="flex bg-gray-100">
                 <Sidebar />
-                <div className="p-6 pt-4 w-full">
+                <div className="md:p-6 md:py-4 w-full">
 
                     <div className="min-h-screen flex bg-gray-900 text-gray-100">
                         {/* Chat List Panel */}
