@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 const LectureCard = ({ lecture }) => {
     return (
         <div
-            className={`bg-white shadow-md rounded-lg p-4 transition-transform transform hover:scale-105 
+            className={`bg-white dark:bg-gray-700 shadow-md rounded-lg p-4 transition-transform transform hover:scale-105 
                 ${lecture.status === 'Ongoing' && 'border-l-4 border-green-500'} 
                 ${lecture.status === 'Scheduled' && 'border-l-4 border-blue-500'} 
                 ${lecture.status === 'Completed' && 'border-l-4 border-gray-500'}`
             }
         >
-            <h2 className="text-lg font-bold text-gray-800">{lecture.title}</h2>
-            <p className="text-sm text-gray-600 mb-2">{lecture.time}</p>
+            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100">{lecture.title}</h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{lecture.time}</p>
             <p className={`inline-block px-3 py-1 text-xs font-semibold rounded-full 
                 ${lecture.status === 'Ongoing' && 'bg-green-100 text-green-700'} 
                 ${lecture.status === "Scheduled" && 'bg-blue-100 text-blue-700'} 
@@ -24,7 +24,7 @@ const LectureCard = ({ lecture }) => {
                 rel="noopener noreferrer"
                 className="block"
             >
-                <button className={`mt-4 text-white p-2 text-sm rounded 
+                <button className={`mt-4 text-white p-2 text-sm rounded font-semibold 
                     ${lecture.status === 'Ongoing' && "bg-green-500"} 
                     ${lecture.status === 'Scheduled' && "bg-blue-500"} 
                     ${lecture.status === 'Completed' && "bg-gray-500"} `

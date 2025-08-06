@@ -17,89 +17,92 @@ import Chats from "./pages/Chats";
 import People from "./pages/People";
 import Exams from "./pages/Exams";
 import { StateProvider } from "./contexts/StateContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
   return (
     <div className="App ">
       <AuthProvider>
         <StateProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/" element={<Home />} />
+          <ThemeProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/" element={<Home />} />
 
-              {/* classroom */}
-              <Route path="/c/" element={
-                <ProtectedRoute>
-                  <Joinedclassrooms />
-                </ProtectedRoute>
-              } />
-              <Route path="/c/stream/:classid" element={
-                <ProtectedRoute>
-                  <Classroom />
-                </ProtectedRoute>
-              } />
-              <Route path="/c/a/:assignmentid" element={
-                <ProtectedRoute>
-                  <AssignmentDetails />
-                </ProtectedRoute>
-              } />
-              <Route path="/c/m/:materialid" element={
-                <ProtectedRoute>
-                  <MaterialDetails />
-                </ProtectedRoute>
-              } />
-              <Route path="/c/people/:classid" element={
-                <ProtectedRoute>
-                  <People />
-                </ProtectedRoute>
-              } />
-              <Route path="/c/work/:classid" element={
-                <ProtectedRoute>
-                  <Classwork />
-                </ProtectedRoute>
-              } />
+                {/* classroom */}
+                <Route path="/c/" element={
+                  <ProtectedRoute>
+                    <Joinedclassrooms />
+                  </ProtectedRoute>
+                } />
+                <Route path="/c/stream/:classid" element={
+                  <ProtectedRoute>
+                    <Classroom />
+                  </ProtectedRoute>
+                } />
+                <Route path="/c/a/:assignmentid" element={
+                  <ProtectedRoute>
+                    <AssignmentDetails />
+                  </ProtectedRoute>
+                } />
+                <Route path="/c/m/:materialid" element={
+                  <ProtectedRoute>
+                    <MaterialDetails />
+                  </ProtectedRoute>
+                } />
+                <Route path="/c/people/:classid" element={
+                  <ProtectedRoute>
+                    <People />
+                  </ProtectedRoute>
+                } />
+                <Route path="/c/work/:classid" element={
+                  <ProtectedRoute>
+                    <Classwork />
+                  </ProtectedRoute>
+                } />
 
-              {/* chat  */}
-              <Route path="/c/chat/:classid" element={
-                <ProtectedRoute>
-                  <Chats />
-                </ProtectedRoute>
-              } />
+                {/* chat  */}
+                <Route path="/c/chat/:classid" element={
+                  <ProtectedRoute>
+                    <Chats />
+                  </ProtectedRoute>
+                } />
 
-              {/* lecture */}
-              <Route path="/c/lec/:classid" element={
-                <ProtectedRoute>
-                  <Lectures />
-                </ProtectedRoute>
-              } />
-              <Route path="/lec/join/:lectureid" element={
-                <ProtectedRoute>
-                  <JoinLecture />
-                </ProtectedRoute>
-              } />
-              <Route path="/lec/:lectureid" element={
-                <ProtectedRoute>
-                  <Lecture />
-                </ProtectedRoute>
-              } />
+                {/* lecture */}
+                <Route path="/c/lec/:classid" element={
+                  <ProtectedRoute>
+                    <Lectures />
+                  </ProtectedRoute>
+                } />
+                <Route path="/lec/join/:lectureid" element={
+                  <ProtectedRoute>
+                    <JoinLecture />
+                  </ProtectedRoute>
+                } />
+                <Route path="/lec/:lectureid" element={
+                  <ProtectedRoute>
+                    <Lecture />
+                  </ProtectedRoute>
+                } />
 
-              {/* exam  */}
-              <Route path="/c/exam/:classid" element={
-                <ProtectedRoute>
-                  <Exams />
-                </ProtectedRoute>
-              } />
+                {/* exam  */}
+                <Route path="/c/exam/:classid" element={
+                  <ProtectedRoute>
+                    <Exams />
+                  </ProtectedRoute>
+                } />
 
-              {/* user */}
-              <Route path="/settings" element={
-                <ProtectedRoute>
-                  <Settings />
-                </ProtectedRoute>
-              } />
-            </Routes>
-          </BrowserRouter>
+                {/* user */}
+                <Route path="/settings" element={
+                  <ProtectedRoute>
+                    <Settings />
+                  </ProtectedRoute>
+                } />
+              </Routes>
+            </BrowserRouter>
+          </ThemeProvider>
         </StateProvider>
       </AuthProvider>
     </div>

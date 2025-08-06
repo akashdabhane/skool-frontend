@@ -6,6 +6,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import JoinClassPopup from "../popups/JoinClassPopup";
 import { useAuth } from "../contexts/AuthContext";
 import { useStateContext } from "../contexts/StateContext";
+import OptionListPopup from "../popups/OptionListPopup";
+import { useTheme } from "../contexts/ThemeContext";
 
 function Navbar({ showMenu }) {
   const [showJoinClass, setShowJoinClass] = useState(false);
@@ -13,6 +15,8 @@ function Navbar({ showMenu }) {
   const { classid } = useParams();
   const { showPage, setShowPage } = useAuth();
   const { toggleBar } = useStateContext();
+  const [isOptionList, setIsOptionList] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const navs = [
     { _id: 1, name: 'Stream', link: `/c/stream/${classid}` },
@@ -24,10 +28,10 @@ function Navbar({ showMenu }) {
   ];
 
   return (
-    <div className="flex items-center justify-between bg-white shadow p-4 sticky top-0 right-0 z-10 w-full">
+    <div className="flex items-center justify-between bg-white dark:bg-gray-900 shadow p-4 sticky top-0 right-0 z-10 w-full">
       <div className="flex ">
         <button className="mx-2 mr-4 md:mr-10" onClick={toggleBar}>
-          <RxHamburgerMenu className="text-2xl" />
+          <RxHamburgerMenu className="text-2xl dark:text-white" />
         </button>
         <div className="flex items-center space-x-12">
           <img
@@ -47,7 +51,7 @@ function Navbar({ showMenu }) {
                         key={nav._id}
                         className={`${showPage === nav._id && "border-b-2 border-blue-500"} 
                   min-w-16 cursor-pointer p-2 rounded hover:bg-slate-200 text-gray-600 
-                  hover:text-blue-500 font-medium md:text-md`}
+                  hover:text-blue-500 dark:hover:bg-slate-800 dark:text-gray-400 dark:hover:text-blue-200 font-medium md:text-md`}
                       >
                         {nav.name}
                       </li>
@@ -61,10 +65,19 @@ function Navbar({ showMenu }) {
         </div>
       </div>
       <div className="flex items-center space-x-4">
+        <input
+          type="checkbox"
+          checked={theme === "dark"}
+          onChange={toggleTheme}
+        >
+
+        </input>
         <GoPlus
           className="p-2 w-10 h-10 text-2xl text-center align-middle rounded-full bg-gray-200 hover:bg-gray-300 cursor-pointer"
           title="create or join class"
-          onClick={() => setShowJoinClass(true)}
+          // onClick={() => setShowJoinClass(true)}
+          onMouseEnter={() => setIsOptionList(true)}
+          onMouseLeave={() => setIsOptionList(false)}
         />
         <div className="w-10 h-10 bg-purple-500 text-white flex items-center justify-center rounded-full cursor-pointer"
           onClick={() => navigate("/settings")}
@@ -74,8 +87,11 @@ function Navbar({ showMenu }) {
       </div>
 
       {
-        showJoinClass && <JoinClassPopup closePopup={() => setShowJoinClass(false)} />
+        isOptionList && <OptionListPopup isOpen={isOptionList} setIsOptionList={setIsOptionList} />
       }
+      {/* {
+        showJoinClass && <JoinClassPopup closePopup={() => setShowJoinClass(false)} />
+      } */}
     </div>
   );
 }

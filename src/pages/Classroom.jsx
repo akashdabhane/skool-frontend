@@ -45,36 +45,42 @@ function Classroom() {
     ];
 
     return (
-        <div className="flex-1 ">
+        <div className="flex-1 min-h-screen bg-gray-50 dark:bg-gray-800">
+            {/* Navbar */}
             <Navbar showMenu={true} />
-            <div className="flex h-screen bg-gray-100">
+
+            <div className="flex h-screen">
+                {/* Sidebar */}
                 <Sidebar />
-                <div className="p-2 md:p-6 pt-4 w-full">
+
+                {/* Main Content */}
+                <div className="p-3 md:p-8 w-full">
                     <>
                         {/* Banner */}
-                        <div className="bg-blue-500 text-white rounded-lg p-6 mb-6">
-                            <h1 className="text-2xl font-bold">{classroom.classname}</h1>
-                            <p className="mt-2 text-sm">{classroom.description}</p>
+                        <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl p-8 shadow-lg mb-8">
+                            <h1 className="text-3xl font-bold tracking-wide">{classroom.classname}</h1>
+                            <p className="mt-3 text-sm text-blue-100 leading-relaxed">
+                                {classroom.description}
+                            </p>
                         </div>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        {/* Content Grid */}
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                             {/* Left Column */}
-                            <div className="lg:col-span-2 space-y-4">
-                                {
-                                    announcements.map((announcement, index) => (
-                                        <AnnouncementCard
-                                            key={index}
-                                            name={announcement.name}
-                                            date={announcement.date}
-                                            title={announcement.title}
-                                        />
-                                    ))
-                                }
+                            <div className="lg:col-span-2 space-y-5">
+                                {announcements.map((announcement, index) => (
+                                    <AnnouncementCard
+                                        key={index}
+                                        name={announcement.name}
+                                        date={announcement.date}
+                                        title={announcement.title}
+                                    />
+                                ))}
                             </div>
 
                             {/* Right Column */}
-                            <div>
-                                <UpcomingCard message="Woohoo, no work due in soon!" />
+                            <div className="space-y-6">
+                                <UpcomingCard message="🎉 Woohoo, no work due soon!" />
                             </div>
                         </div>
                     </>

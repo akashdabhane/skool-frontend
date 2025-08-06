@@ -89,10 +89,10 @@ function Joinedclassrooms() {
     return (
         <div className="flex-1">
             <Navbar showMenu={false} />
-            <div className="flex h-screen">
+            <div className="flex h-screen dark:bg-gray-800">
                 <Sidebar />
                 <div className="p-6 pt-4 w-full ">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
                         {
                             classes.map((course) => (
                                 <CourseCard

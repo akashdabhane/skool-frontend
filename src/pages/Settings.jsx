@@ -30,7 +30,7 @@ const Settings = () => {
 
     return (
         <div className="flex-1 ">
-            <Navbar showMenu={true} />
+            <Navbar showMenu={false} />
             <div className="flex h-full bg-gray-100">
                 <Sidebar />
                 <div className="w-full max-w-4xl mx-auto py-4 px-2 md:px-0 ">

@@ -7,26 +7,38 @@ function CourseCard({ course, bgColor }) {
 
     return (
         <div
-            className={`p-4 rounded-lg shadow-md bg-${bgColor}-500 text-white relative h-36 cursor-pointer`}
+            className={`relative p-5 rounded-xl shadow-lg bg-gradient-to-br from-${bgColor}-500 to-${bgColor}-600 text-white h-44 cursor-pointer transition-transform transform hover:scale-105 hover:shadow-2xl`}
             onClick={() => navigate(`/c/stream/${course._id}`)}
         >
-            <div className="absolute top-2 right-2">
-                <button className="p-1 rounded text-xl">...</button>
+            {/* Options Button */}
+            <div className="absolute top-3 right-3">
+                <button className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition">
+                    ⋮
+                </button>
             </div>
-            <h2 className="text-lg font-bold">{course.classname}</h2>
-            <p className="text-sm">{course.description}</p>
-            <div className="absolute bottom-2 right-2 flex space-x-2">
-                <button className="p-1 bg-gray-300 rounded hover:bg-gray-400">
+
+            {/* Title & Description */}
+            <h2 className="text-xl font-extrabold tracking-wide">{course.classname}</h2>
+            <p className="text-sm text-white/80 mt-1 line-clamp-2">
+                {course.description}
+            </p>
+
+            {/* Action Buttons */}
+            <div className="absolute bottom-3 left-5 flex space-x-2">
+                <button className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition">
                     📷
                 </button>
-                <button className="p-1 bg-gray-300 rounded hover:bg-gray-400">
+                <button className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition">
                     📁
                 </button>
             </div>
-            <div className="absolute top-[30%] right-10 w-14 h-14 bg-purple-500 flex items-center justify-center rounded-full text-2xl">
+
+            {/* Avatar Circle */}
+            <div className="absolute top-[35%] right-6 w-16 h-16 bg-purple-600 flex items-center justify-center rounded-full text-2xl font-bold shadow-md">
                 {course.avatarText ? course.avatarText : extractFirstLetter(course.teacher.firstname)}
             </div>
         </div>
+
     );
 }
 

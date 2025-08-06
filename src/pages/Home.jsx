@@ -35,18 +35,18 @@ const Home = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-800">
             {/* Navbar */}
-            <nav className="bg-white shadow-md py-4 px-8 flex justify-between items-center">
+            <nav className="bg-white dark:bg-gray-800 shadow-md py-4 px-8 flex justify-between items-center">
                 <img
                     src={Logo}
                     alt='skool logo'
                     className="h-10 w-20 object-cover object-center cursor-pointer"
                 />
                 <ul className="flex gap-6">
-                    <li><Link to="#" className="text-gray-700 hover:text-blue-500">Home</Link></li>
-                    <li><Link to="#" className="text-gray-700 hover:text-blue-500">About</Link></li>
-                    <li><Link to="#" className="text-gray-700 hover:text-blue-500">Contact</Link></li>
+                    <li><Link to="#" className="text-gray-700 dark:text-gray-200 hover:text-blue-500">Home</Link></li>
+                    <li><Link to="#" className="text-gray-700 dark:text-gray-200 hover:text-blue-500">About</Link></li>
+                    <li><Link to="#" className="text-gray-700 dark:text-gray-200 hover:text-blue-500">Contact</Link></li>
                 </ul>
                 <Link to="/login">
                     <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Login</button>
@@ -90,11 +90,11 @@ export default Home;
 
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
-    <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center">
+    <div className="bg-white dark:bg-gray-700 shadow-lg rounded-lg p-6 flex flex-col items-center text-center">
         <div className="text-blue-500 text-4xl mb-4">
             <Icon />
         </div>
-        <h3 className="text-lg font-semibold mb-2">{title}</h3>
-        <p className="text-gray-600 text-sm">{description}</p>
+        <h3 className="text-lg dark:text-gray-100 font-semibold mb-2">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-300 text-sm">{description}</p>
     </div>
 );

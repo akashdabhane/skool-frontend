@@ -53,57 +53,65 @@ function Classwork() {
   ];
 
   return (
-    <div className="flex-1  ">
+    <div className="flex-1 min-h-screen bg-gray-50 dark:bg-gray-800">
+      {/* Navbar */}
       <Navbar showMenu={true} />
-      <div className="flex bg-gray-100">
+
+      <div className="flex">
+        {/* Sidebar */}
         <Sidebar />
-        <div className="p-2 md:p-8 pt-4 w-full">
 
-          <div className="h-screen bg-gray-100">
-            <div className="">
-              <div className="mb-6 flex justify-between items-center ">
-                <select className="border-gray-300 rounded-md shadow-sm px-4 py-2 min-w-44">
-                  <option>All topics</option>
-                </select>
-                <button className="text-blue-600 font-medium">View your work</button>
-              </div>
+        {/* Main Content */}
+        <div className="p-3 md:p-8 pt-6 w-full">
+          <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            {/* Filter */}
+            <select className="border border-gray-300 dark:border-gray-700 dark:bg-gray-700 rounded-lg shadow-sm px-4 py-2 min-w-44 focus:outline-none focus:ring-2 transition">
+              <option>All topics</option>
+            </select>
 
+            {/* View Work Button */}
+            <button className="text-blue-600 font-medium hover:underline">
+              View your work →
+            </button>
+          </div>
+
+          {/* Assignments */}
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-400 border-b pb-2 mb-4">📚 Assignments</h2>
               <div className="space-y-4">
-                <h2>Assignments</h2>
-                {
-                  assignments.map((item, index) => {
-                    const date = new Date(item.createdAt);
+                {assignments.map((item, index) => {
+                  const date = new Date(item.createdAt);
+                  return (
+                    <ClassworkCard
+                      key={index}
+                      title={item.title}
+                      description={item.description}
+                      date={date.toDateString()}
+                    />
+                  );
+                })}
+              </div>
+            </div>
 
-                    return (
-                      <ClassworkCard
-                        key={index}
-                        title={item.title}
-                        description={item.description}
-                        date={date.toDateString()}
-                      />
-                    )
-                  })
-                }
-
-                <h2>Materials</h2>
-                {
-                  materials.map((item, index) => {
-                    const date = new Date(item.createdAt);
-
-                    return (
-                      <ClassworkCard
-                        key={index}
-                        title={item.title}
-                        description={item.description}
-                        date={date.toDateString()}
-                      />
-                    )
-                  })
-                }
+            {/* Materials */}
+            <div>
+              <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-400 border-b pb-2 mb-4">📂 Materials</h2>
+              <div className="space-y-4">
+                {materials.map((item, index) => {
+                  const date = new Date(item.createdAt);
+                  return (
+                    <ClassworkCard
+                      key={index}
+                      title={item.title}
+                      description={item.description}
+                      date={date.toDateString()}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

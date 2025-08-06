@@ -90,22 +90,22 @@ function Login() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
+      <div className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-lg p-8 max-w-md w-full">
         <div className="text-center">
           <img
             src={Logo}
             alt="Google Classroom"
             className="w-20 mx-auto mb-4"
           />
-          <h1 className="text-2xl font-bold text-gray-800">Welcome to Skool</h1>
-          <p className="text-gray-600 mb-6">Sign in to continue</p>
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Welcome to Skool</h1>
+          <p className="text-gray-600 dark:text-gray-300 mb-6">Sign in to continue</p>
         </div>
 
         <form onSubmit={formik.handleSubmit}>
           {
             formFields.map((field, index) => (
               <div className="mb-4" key={index}>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   {field.label}
                 </label>
                 <input
@@ -116,7 +116,7 @@ function Login() {
                   name={field.type}
                   id={field.type}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
                 />
                 {
                   (formik.touched[field.type] && formik.errors[field.type]) &&
@@ -128,14 +128,14 @@ function Login() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full bg-blue-600 text-white py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold"
           >
             Sign In
           </button>
         </form>
 
         <div className="text-center mt-6">
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             Don't have an account?{" "}
             <Link to="/register" className="text-blue-500 font-medium hover:underline">
               Sign up here
@@ -148,7 +148,7 @@ function Login() {
             socialLogins.map((social, index) => (
               <button
                 key={index}
-                className="bg-gray-100 hover:bg-gray-200 p-2 rounded-full shadow-md"
+                className="bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-950 p-2 rounded-full shadow-md"
                 aria-label={`Sign in with ${social.name}`}
               >
                 <img src={social.icon} alt={social.name} className="w-6" />

@@ -36,17 +36,17 @@ function Exams() {
     return (
         <div className="flex-1">
             <Navbar showMenu={true} />
-            <div className="flex bg-gray-100">
+            <div className="flex bg-gray-100 dark:bg-gray-800">
                 <Sidebar />
                 <div className="p-3 md:p-8 pt-4 w-full">
 
                     {
                         exams.length > 0
                             ?
-                            <div className="min-h-screen bg-gray-100">
+                            <div className="min-h-screen bg-gray-100 dark:bg-gray-800">
                                 {/* Page Content */}
                                 <div className="">
-                                    <h1 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6">Exams</h1>
+                                    <h1 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Exams</h1>
                                     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                                         {exams.map((lecture, index) => (
                                             <LectureCard key={index} lecture={lecture} />
