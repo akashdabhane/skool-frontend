@@ -8,7 +8,6 @@ import { useFormik } from "formik";
 import { registrationSchema } from "../validationSchema/registrationSchema";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { baseUrl } from "../utils/helper";
 
 // Social media icons and labels
 const socialLogins = [
@@ -84,6 +83,7 @@ function Register() {
 
   const handleRegistration = (formData) => {
     try {
+      const baseUrl = process.env.REACT_APP_API_URL;
       axios.post(`${baseUrl}/users/register`, formData, {
         withCredentials: true,
         headers: {
@@ -106,8 +106,8 @@ function Register() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-400 to-teal-600 flex items-center justify-center">
-      <div className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-lg p-8 my-20 max-w-md w-full">
+    <div className="min-h-screen app-gradient flex items-center justify-center">
+      <div className="app-card p-8 my-20 max-w-md w-full">
         <div className="text-center">
           <img
             src={Logo}
@@ -133,7 +133,7 @@ function Register() {
                   name={field.name}
                   id={field.name}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700"
+                  className="w-full app-input"
                 />
                 {
                   (formik.touched[field.name] && formik.errors[field.name]) &&
@@ -145,7 +145,7 @@ function Register() {
 
           <button
             type="submit"
-            className="w-full bg-green-500 text-white py-2 rounded-md shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full app-button-primary"
           >
             Sign Up
           </button>
@@ -154,7 +154,7 @@ function Register() {
         <div className="text-center mt-6">
           <p className="text-gray-600 dark:text-gray-400">
             Already have an account?{" "}
-            <Link to="/login" className="text-green-500 font-medium hover:underline">
+            <Link to="/login" className="app-link">
               Sign in here
             </Link>
           </p>

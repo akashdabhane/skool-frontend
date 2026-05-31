@@ -1,8 +1,13 @@
 import React from "react";
 
-const ChatCard = ({ name, message, date }) => {
+const ChatCard = ({ name, message, date, isActive, onClick }) => {
   return (
-    <div className="flex items-start space-x-3 p-4 bg-white dark:bg-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer border border-gray-200 transition">
+    <div
+      className={`flex items-start space-x-3 p-4 rounded-lg cursor-pointer border transition ${
+        isActive ? "bg-blue-50 border-blue-200" : "bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 border-gray-200"
+      }`}
+      onClick={onClick}
+    >
       {/* Avatar */}
       <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
         <i className="fas fa-user text-gray-500"></i>

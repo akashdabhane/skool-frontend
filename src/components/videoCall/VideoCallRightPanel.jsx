@@ -3,19 +3,30 @@ import VideoCallRightPanelPeople from './VideoCallRightPanelPeople';
 import VideoCallRightPanelInfo from './VideoCallRightPanelInfo';
 import VideoCallRightPanelMessages from './VideoCallRightPanelMessages';
 
-
-function VideoCallRightPanel({ panelNav, setPanelNav }) {
+function VideoCallRightPanel({
+  panelNav,
+  setPanelNav,
+  participants,
+  attendanceRecords,
+  attendanceSummary,
+  isTeacher,
+}) {
 
   return (
     <div>
       {
         panelNav === 0 && (
-          <VideoCallRightPanelInfo closePanelNav={() => setPanelNav(null)} />
+          <VideoCallRightPanelInfo
+            closePanelNav={() => setPanelNav(null)}
+            attendanceRecords={attendanceRecords}
+            attendanceSummary={attendanceSummary}
+            isTeacher={isTeacher}
+          />
         )
       }
       {
         panelNav === 1 && (
-          <VideoCallRightPanelPeople closePanelNav={() => setPanelNav(null)} />
+          <VideoCallRightPanelPeople closePanelNav={() => setPanelNav(null)} participants={participants} />
         )
       }
       {

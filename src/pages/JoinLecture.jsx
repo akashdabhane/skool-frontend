@@ -19,9 +19,9 @@ export default JoinLecture;
 
 const Navbar = () => {
     return (
-        <header className="w-full bg-gray-100 border-b border-gray-300 py-4 px-6 flex justify-between items-center">
+        <header className="w-full bg-gray-100 dark:bg-gray-900 border-b border-gray-300 dark:border-0 py-4 px-6 flex justify-between items-center">
             <div className="flex items-center">
-                <Link to={'/'}>
+                <Link to={'/c'}>
                     <img
                         src={Logo}
                         alt="Skool Logo"
@@ -29,7 +29,7 @@ const Navbar = () => {
                     />
                 </Link>
             </div>
-            <div className="text-sm text-gray-600">akashdabhane10@gmail.com</div>
+            <div className="text-sm text-gray-600 dark:text-gray-100">akashdabhane10@gmail.com</div>
         </header>
     );
 };
@@ -38,7 +38,7 @@ const Navbar = () => {
 
 const MainCard = () => {
     return (
-        <div className="flex-1 flex justify-center items-center bg-gray-200 p-4">
+        <div className="flex-1 flex justify-center items-center bg-gray-200 dark:bg-gray-800 p-4">
             <div className="w-full max-w-md bg-black text-white rounded-lg shadow-md p-6">
                 <h2 className="text-lg font-semibold mb-4">Akash Dabhane</h2>
                 <p className="text-sm mb-4">
@@ -61,18 +61,18 @@ const RightPanel = () => {
     const navigate = useNavigate();
     
     return (
-        <div className="hidden md:flex w-1/4 bg-gray-100 flex-col p-4">
-            <h2 className="text-lg font-semibold mb-2">Ready to join?</h2>
-            <p className="text-sm text-gray-600 mb-4">No one else is here</p>
+        <div className="hidden md:flex w-1/4 bg-gray-100 dark:bg-gray-900 flex-col p-4">
+            <h2 className="text-lg font-semibold mb-2 dark:text-gray-100">Ready to join?</h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">No one else is here</p>
             <button className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 mb-2"
                 onClick={() => navigate(`/lec/${"3434"}`)}
             >
                 Join now
             </button>
-            <button className="w-full bg-gray-200 text-gray-600 py-2 rounded-md hover:bg-gray-300 mb-2">
+            <button className="w-full bg-gray-200 text-gray-600 dark:bg-gray-400 dark:text-gray-800 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 mb-2">
                 Present
             </button>
-            <button className="w-full bg-gray-200 text-gray-600 py-2 rounded-md hover:bg-gray-300">
+            <button className="w-full bg-gray-200 text-gray-600 dark:bg-gray-400 dark:text-gray-800 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500">
                 Use Companion Mode
             </button>
         </div>

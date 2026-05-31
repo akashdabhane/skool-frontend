@@ -1,11 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ChatCard from "./ChatCard";
 
-const ChatList = () => {
-    const chats = [
-        { name: "example", message: "jjj", date: "15 Dec 2024" },
-        { name: "lakhan", message: "hello and welcome to india's kskdf djfda k dfd", date: "13 Dec 2024" },
-    ];
+const ChatList = ({ rooms, selectedRoomId, onSelectRoom }) => {
 
     return (
         <div>
@@ -20,12 +16,14 @@ const ChatList = () => {
 
   {/* Chat Cards */}
   <div className="space-y-4">
-    {chats.map((chat, index) => (
+    {rooms.map((chat, index) => (
       <ChatCard
         key={index}
         name={chat.name}
-        message={chat.message}
-        date={chat.date}
+        message={chat.lastMessage?.message || ""}
+        date={chat.lastMessage?.createdAt ? new Date(chat.lastMessage.createdAt).toDateString() : ""}
+        isActive={selectedRoomId === chat._id}
+        onClick={() => onSelectRoom(chat)}
       />
     ))}
   </div>

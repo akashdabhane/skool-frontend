@@ -8,8 +8,8 @@ import { useFormik } from "formik";
 import { loginSchema } from "../validationSchema/loginSchema";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { baseUrl } from "../utils/helper";
 import { useAuth } from "../contexts/AuthContext";
+import { baseUrl as defaultBaseUrl } from "../utils/helper";
 
 // Social media icons and labels
 const socialLogins = [
@@ -70,7 +70,8 @@ function Login() {
 
   const handleLogin = async (formData) => {
     try {
-      const response = await axios.post(`${baseUrl}users/login`, formData);
+      const apiBaseUrl = process.env.REACT_APP_API_URL || defaultBaseUrl;
+      const response = await axios.post(`${apiBaseUrl}users/login`, formData);
       console.log(response);
       if (response?.status === 200) {
         setError('login successful!');
@@ -89,8 +90,8 @@ function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-      <div className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-lg p-8 max-w-md w-full">
+    <div className="min-h-screen app-gradient flex items-center justify-center">
+      <div className="app-card p-8 max-w-md w-full">
         <div className="text-center">
           <img
             src={Logo}
@@ -116,7 +117,7 @@ function Login() {
                   name={field.type}
                   id={field.type}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+                  className="w-full app-input"
                 />
                 {
                   (formik.touched[field.type] && formik.errors[field.type]) &&
@@ -128,7 +129,7 @@ function Login() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold"
+            className="w-full app-button-primary"
           >
             Sign In
           </button>
@@ -137,8 +138,13 @@ function Login() {
         <div className="text-center mt-6">
           <p className="text-gray-600 dark:text-gray-400">
             Don't have an account?{" "}
-            <Link to="/register" className="text-blue-500 font-medium hover:underline">
+            <Link to="/register" className="app-link">
               Sign up here
+            </Link>
+          </p>
+          <p className="text-sm text-gray-500 mt-2">
+            <Link to="/forgot-password" className="app-link">
+              Forgot password?
             </Link>
           </p>
         </div>

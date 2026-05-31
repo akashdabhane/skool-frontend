@@ -3,23 +3,17 @@ import { IoMdClose } from "react-icons/io";
 import { AiOutlineAudio, AiOutlineAudioMuted, AiOutlineMore } from "react-icons/ai";
 import { extractFirstLetter } from "../../utils/helper";
 
-const videoCallRightPanelPeople = ({ closePanelNav }) => {
-    const Participants = [
-        {
-            name: "Akash Dabhane",
+const videoCallRightPanelPeople = ({ closePanelNav, participants }) => {
+    const participantList = participants?.length
+        ? participants.map((participant) => ({
+            id: participant.socketId,
+            name: participant.userId?.toString().slice(-6) || "Participant",
             profileImage: "",
             color: "purple",
-            isMuted: true,
-            isHost: true
-        },
-        {
-            name: "Lakhan",
-            profileImage: "",
-            color: "green",
-            isMuted: true,
+            isMuted: false,
             isHost: false
-        },
-    ]
+        }))
+        : [];
 
     return (
         <div className="w-full h-full md:w-96 p-4 flex flex-col bg-gray-800">
@@ -46,11 +40,13 @@ const videoCallRightPanelPeople = ({ closePanelNav }) => {
             <div>
                 <h3 className="text-sm font-semibold text-gray-600 mb-2">In Meeting</h3>
                 <div className="p-4 space-y-4">
-                    {
-                        Participants.map((participant, index) => (
-                            <ParticipantCard participant={participant} key={index} />
+                    {participantList.length > 0 ? (
+                        participantList.map((participant, index) => (
+                            <ParticipantCard participant={participant} key={participant.id || index} />
                         ))
-                    }
+                    ) : (
+                        <p className="text-xs text-gray-400">No participants yet</p>
+                    )}
                 </div>
             </div>
         </div>

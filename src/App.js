@@ -16,6 +16,13 @@ import Lectures from "./pages/Lectures";
 import Chats from "./pages/Chats";
 import People from "./pages/People";
 import Exams from "./pages/Exams";
+import ExamDetails from "./pages/ExamDetails";
+import Analytics from "./pages/Analytics";
+import Resources from "./pages/Resources";
+import JoinClassByLink from "./pages/JoinClassByLink";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import ChangePassword from "./pages/ChangePassword";
 import { StateProvider } from "./contexts/StateContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -29,6 +36,8 @@ function App() {
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password/:token" element={<ResetPassword />} />
                 <Route path="/" element={<Home />} />
 
                 {/* classroom */}
@@ -62,6 +71,11 @@ function App() {
                     <Classwork />
                   </ProtectedRoute>
                 } />
+                <Route path="/c/resources/:classid" element={
+                  <ProtectedRoute>
+                    <Resources />
+                  </ProtectedRoute>
+                } />
 
                 {/* chat  */}
                 <Route path="/c/chat/:classid" element={
@@ -81,6 +95,11 @@ function App() {
                     <JoinLecture />
                   </ProtectedRoute>
                 } />
+                <Route path="/c/join/:token" element={
+                  <ProtectedRoute>
+                    <JoinClassByLink />
+                  </ProtectedRoute>
+                } />
                 <Route path="/lec/:lectureid" element={
                   <ProtectedRoute>
                     <Lecture />
@@ -93,11 +112,26 @@ function App() {
                     <Exams />
                   </ProtectedRoute>
                 } />
+                <Route path="/c/exam/details/:examid" element={
+                  <ProtectedRoute>
+                    <ExamDetails />
+                  </ProtectedRoute>
+                } />
+                <Route path="/c/analytics/:classid" element={
+                  <ProtectedRoute>
+                    <Analytics />
+                  </ProtectedRoute>
+                } />
 
                 {/* user */}
                 <Route path="/settings" element={
                   <ProtectedRoute>
                     <Settings />
+                  </ProtectedRoute>
+                } />
+                <Route path="/change-password" element={
+                  <ProtectedRoute>
+                    <ChangePassword />
                   </ProtectedRoute>
                 } />
               </Routes>

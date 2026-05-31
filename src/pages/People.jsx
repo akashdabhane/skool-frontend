@@ -5,11 +5,13 @@ import axios from "axios";
 import { baseUrl } from "../utils/helper";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useAuth } from "../contexts/AuthContext";
 
 
 const People = () => {
     const [connectedPeople, setConnectedPeople] = useState({});
     const { classid } = useParams();
+    const { loggedInUser } = useAuth();
 
     useEffect(() => {
         axios.get(`${baseUrl}class/get-connected-users/${classid}`,
@@ -27,6 +29,26 @@ const People = () => {
                 console.error(error);
             });
     }, [])
+
+    const handleRemoveStudent = (studentId) => {
+        axios.patch(`${baseUrl}class/kick-student/${classid}/${studentId}`,
+            {},
+            {
+                withCredentials: true,
+                headers: {
+                    "Authorization": `Bearer ${Cookies.get("accessToken")}`,
+                }
+            })
+            .then((response) => {
+                setConnectedPeople((prev) => ({
+                    ...prev,
+                    connectedStudents: (prev.connectedStudents || []).filter((student) => student._id !== studentId)
+                }));
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
     const teachers = [{ name: "Pallavi Mangrulkar" }];
     const students = [
@@ -71,7 +93,12 @@ const People = () => {
                                 </div>
                                 <div className="bg-white rounded-lg shadow-sm border border-gray-100 divide-y divide-gray-100">
                                     {connectedPeople?.connectedStudents?.map((student, index) => (
-                                        <StudentCard key={index} student={student} />
+                                        <StudentCard
+                                            key={index}
+                                            student={student}
+                                            canManage={Boolean(loggedInUser?.isTeacher)}
+                                            onRemove={handleRemoveStudent}
+                                        />
                                     ))}
                                 </div>
                             </div>
@@ -107,7 +134,7 @@ const TeacherCard = ({ teacher }) => {
 };
 
 // StudentCard Component
-const StudentCard = ({ student }) => {
+const StudentCard = ({ student, canManage, onRemove }) => {
     return (
         <div className="flex items-center space-x-3 p-3 border-b border-gray-200 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-800 transition cursor-pointer">
             {/* Avatar */}
@@ -119,6 +146,17 @@ const StudentCard = ({ student }) => {
             <span className="text-gray-800 dark:text-gray-100 font-medium">
                 {student.firstname + " " + student.lastname}
             </span>
+            {canManage && (
+                <button
+                    className="ml-auto text-sm text-red-600 hover:text-red-700"
+                    onClick={(event) => {
+                        event.stopPropagation();
+                        onRemove(student._id);
+                    }}
+                >
+                    Remove
+                </button>
+            )}
         </div>
     );
 };

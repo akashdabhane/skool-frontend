@@ -1,16 +1,26 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { baseUrl } from "../utils/helper";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 
 const JoinClassPopup = ({ closePopup }) => {
   const navigate = useNavigate();
+  const { loggedInUser } = useAuth();
+  const [classCode, setClassCode] = useState("");
+  const [error, setError] = useState("");
 
   const handleJoinClassroom = () => {
     try {
-      axios.post(`${baseUrl}class/join-classroom/${"classid"}`,
+      if (!classCode.trim()) {
+        setError("Class code is required");
+        return;
+      }
+
+      axios.patch(`${baseUrl}class/join-by-code/${classCode.trim().toUpperCase()}`,
+        {},
         {
           withCredentials: true,
           headers: {
@@ -24,6 +34,7 @@ const JoinClassPopup = ({ closePopup }) => {
         })
         .catch((error) => {
           console.log(error);
+          setError(error?.response?.data?.message || "Failed to join classroom");
         })
     } catch (error) {
       console.log(error);
@@ -43,12 +54,14 @@ const JoinClassPopup = ({ closePopup }) => {
           </p>
           <div className="flex items-center mt-2">
             <div className="w-8 h-8 bg-purple-600 text-white flex items-center justify-center rounded-full">
-              A
+              {loggedInUser?.firstname ? loggedInUser.firstname.charAt(0).toUpperCase() : "U"}
             </div>
             <div className="ml-2">
-              <p className="font-semibold">Akash Dabhane</p>
+              <p className="font-semibold">
+                {loggedInUser ? `${loggedInUser.firstname} ${loggedInUser.lastname}` : "User"}
+              </p>
               <p className="text-xs text-gray-500">
-                akashdabhane10@gmail.com
+                {loggedInUser?.email || ""}
               </p>
             </div>
             <button className="ml-auto text-blue-500 text-sm">
@@ -60,7 +73,15 @@ const JoinClassPopup = ({ closePopup }) => {
           label="Class code"
           placeholder="Enter class code"
           info="Ask your teacher for the class code, then enter it here."
+          value={classCode}
+          onChange={(event) => {
+            setClassCode(event.target.value);
+            setError("");
+          }}
         />
+        {error && (
+          <p className="text-sm text-red-600 mt-1">{error}</p>
+        )}
         <div className="text-sm text-gray-600 mt-4">
           <p>To sign in with a class code:</p>
           <ul className="list-disc list-inside">
@@ -75,7 +96,10 @@ const JoinClassPopup = ({ closePopup }) => {
           >
             Cancel
           </button>
-          <button className="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+          <button
+            className="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            onClick={handleJoinClassroom}
+          >
             Join
           </button>
         </div>
@@ -87,7 +111,7 @@ const JoinClassPopup = ({ closePopup }) => {
 export default JoinClassPopup;
 
 
-const InputField = ({ label, placeholder, info }) => {
+const InputField = ({ label, placeholder, info, value, onChange }) => {
   return (
     <div className="mb-4">
       <label className="block text-sm font-medium text-gray-700">
@@ -96,6 +120,8 @@ const InputField = ({ label, placeholder, info }) => {
       <input
         type="text"
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
       />
       {info && <p className="text-xs text-gray-500 mt-1">{info}</p>}
